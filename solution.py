@@ -17,23 +17,23 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     recv = clientSocket.recv(1024).decode()
     # to cmnt
     # print(recv) #You can use these print statement to validate return codes from the server.
-    if recv[:3] != '220':
+    # if recv[:3] != '220':
     #     print('220 reply not received from server.')
     # end
 
     # Send HELO command and print server response.
-        heloCommand = 'HELO Alice\r\n'
+    heloCommand = 'HELO Alice\r\n'
     clientSocket.send(heloCommand.encode())
     recv1 = clientSocket.recv(1024).decode()
     # to cmnt
     # print(recv1)
-    if recv1[:3] != '250':
+    # if recv1[:3] != '250':
     #    print('250 reply not received from server.')
     # end
 
     # Send MAIL FROM command and handle server response.
     # Fill in start
-        mailFrom = 'MAIL FROM: <ctu212@nyu.edu>\r\n'
+    mailFrom = 'MAIL FROM: <ctu212@nyu.edu>\r\n'
     clientSocket.send(mailFrom.encode())
     recv2 = clientSocket.recv(1024).decode()
     # Fill in end
@@ -43,24 +43,24 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     rcpt = 'RCPT TO: <ogasampikin@gmail.com>\r\n'##Reciepient email
     clientSocket.send(rcpt.encode())
     recv3 = clientSocket.recv(1024).decode()
-    if recv3[:3] != '250':
+    # if recv3[:3] != '250':
     #     print('250 reply not received from server, Recipient was not deemed okay.')
     # print(recv3)
     # Fill in end
 
     # Send DATA command and handle server response.
     # Fill in start
-        data = 'DATA\r\n'
+    data = 'DATA\r\n'
     clientSocket.send(data.encode())
     recv4 = clientSocket.recv(1024).decode()
-    if recv4[:3] != '250':
+    # if recv4[:3] != '250':
     #     print('250 reply not received from server, data not received.')
     # print(recv4)
     # Fill in end
 
     # Send message data.
     # Fill in start
-        clientSocket.send(bytes((msg + endmsg).encode()))
+    clientSocket.send(bytes((msg + endmsg).encode()))
     recv5 = clientSocket.recv(1024)
     # print(recv5)
     # Fill in end
