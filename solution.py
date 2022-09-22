@@ -11,7 +11,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
 
     # Fill in start
     clientSocket = socket(AF_INET, SOCK_STREAM)
-    clientSocket.connect(mailserver/1025)
+    clientSocket.connect(mailserver)
     # Fill in end
 
     recv = clientSocket.recv(1024).decode()
@@ -33,14 +33,14 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
 
     # Send MAIL FROM command and handle server response.
     # Fill in start
-    mailFrom = 'MAIL FROM: <ctu212@nyu.edu>\r\n'
+    mailFrom = 'MAIL FROM:ctu212@nyu.edu\r\n'
     clientSocket.send(mailFrom.encode())
     recv2 = clientSocket.recv(1024).decode()
     # Fill in end
 
     # Send RCPT TO command and handle server response.
     # Fill in start
-    rcpt = 'RCPT TO: <ogasampikin@gmail.com>\r\n'##Reciepient email
+    rcpt = 'RCPT TO:ogasampikin@gmail.com\r\n'##Reciepient email
     clientSocket.send(rcpt.encode())
     recv3 = clientSocket.recv(1024).decode()
     # if recv3[:3] != '250':
