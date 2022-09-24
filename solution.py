@@ -10,11 +10,11 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     # Create socket called clientSocket and establish a TCP connection with mailserver and port
 
     # Fill in start
-    clientSocket = socket(AF_INET, SOCK_DGRAM)
-    clientSocket.connect((port, mailserver))
+    clientSocket = socket(AF_INET, SOCK_STREAM)
+    clientSocket.connect((mailserver,port))
     # Fill in end
 
-    recv = clientSocket.recv(1024).decode()
+    # recv = clientSocket.recv(1024).decode()
     # to cmnt
     # print(recv) #You can use these print statement to validate return codes from the server.
     # if recv[:3] != '220':
@@ -24,7 +24,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     # Send HELO command and print server response.
     heloCommand = 'HELO Chidi\r\n'
     clientSocket.send(heloCommand.encode())
-    recv1 = clientSocket.recv(1024).decode()
+    recv1 = clientSocket.recv(1024)
     # to cmnt
     # print(recv1)
     # if recv1[:3] != '250':
